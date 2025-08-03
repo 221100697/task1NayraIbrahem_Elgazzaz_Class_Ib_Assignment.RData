@@ -1,0 +1,22 @@
+dir.create("data")
+dir.create("script")
+dir.create("results")
+# Load the patient_info.csv
+data_path <- "data/patient_info.csv"
+patient_info <- read.csv(data_path)
+
+# Check structure
+str(patient_info)
+# Convert columns to appropriate types
+patient_info$gender <- as.factor(patient_info$gender)
+patient_info$height <- as.factor(patient_info$height)
+patient_info$age <- as.numeric(patient_info$age)
+patient_info$weight <- as.numeric(patient_info$weight)
+
+# Add smoking_status (example values)
+patient_info$smoking_status <- c("Yes", "No", "Yes", "No", "Yes")  # Replace with actual if exists
+patient_info$smoking_status_bin <- ifelse(patient_info$smoking_status == "Yes", 1, 0)
+patient_info$smoking_status_bin <- as.factor(patient_info$smoking_status_bin)
+write.csv(patient_info, file = "results/patient_info_clean.csv", row.names = FALSE)
+save.image(file = "NayraIbrahem_Elgazzaz_Class_Ib_Assignment.RData")  # Change YourName to your real name
+
